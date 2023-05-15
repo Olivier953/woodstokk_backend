@@ -23,6 +23,7 @@ const userSchema = new mongoose.Schema(
     timestamps : true
 }
 )
+console.log("ma")
 
 const userModel = mongoose.model("userInfo", userSchema)
 

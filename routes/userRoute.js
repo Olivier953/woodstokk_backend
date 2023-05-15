@@ -4,8 +4,9 @@ const User = require("../models/userModel")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const authMiddleware = require("../middleware/authMiddleware")
+const dotenv = require('dotenv')
+dotenv.config()
 
-JWT_SECRET = "sfkhsdjfdsjfds34324234!sfdsdfjsdfsd98989!ç89èdsf"
 
 router.post("/register", async (req, res) => {
     try {
@@ -45,7 +46,7 @@ router.post("/login", async (req, res) => {
             .status(200)
             .send({message : "password is incorrect", success : false})
         }else {
-            const token = jwt.sign({id: user._id}, JWT_SECRET, {
+            const token = jwt.sign({id: user._id}, (process.env.JWT_SECRET), {
                 expiresIn: "1d",
             })
             res
